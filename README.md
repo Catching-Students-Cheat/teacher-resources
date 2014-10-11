@@ -6,6 +6,9 @@ Help Used Diff Code By: Chris Boulton <chris.boulton@interspire.com>
 
 Compare all students files for cheating.
 
+
+Working on percentage used to catch cheaters. Right now it is set to 50%
+Working on the edit function to all forms
 Install the latest WAMPSERVER
 Unzip the code in the www file
 
@@ -27,8 +30,6 @@ CopyCode Page
 Add/Edit Percentage of code copy
 View which students copied each other
 
-Working on percentage used to catch cheaters. Right now it is set to 50%
-Working on the edit function to all forms
 
 All file will be stored in a text file.
 Root
@@ -41,7 +42,9 @@ Root
 -----teacherName
 -------Periods#
 ---------studentFirstName_studentLastName_studentTitle.txt
+
 --lib
+
 --tmp
 --var
 .project
