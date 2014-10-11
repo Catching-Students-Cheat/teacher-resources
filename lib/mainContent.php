@@ -14,11 +14,11 @@ class MainContent {
 			include_once $rootFile . '/lib/teacherInformation.php';
 			$teacher = new TeacherInformation();
 			if (file_exists("teacher/teacher.txt")) {
-				$teacher -> editTeacher($txtData);
-				$this -> html = $teacher -> getHTML();
+				$teacher -> editTeacher();
+				$this -> html = $teacher -> html;
 			} else {
 				$teacher -> addTeacher();
-				$this -> html = $teacher -> getHTML();
+				$this -> html = $teacher -> html;
 			}
 		} else if ($getID == "addStudent") {
 			include_once $rootFile . '/lib/studentInformation.php';
@@ -51,21 +51,18 @@ class MainContent {
 			include_once $rootFile . '/lib/studentsCheat.php';
 			$studentsCheat = new StudentsCheat($rootFile);
 			$this -> html = $studentsCheat -> getHTML();
-		} else if ($getID == "editTeacher") {
+		} else if ($getID == "addTeacher") {
 			include_once $rootFile . '/lib/teacherInformation.php';
-			$teacher = new TeacherInformation($txtData);
+			$teacher = new TeacherInformation;
 			if (file_exists("teacher/teacher.txt")) {
-				$teacher -> writeTeacherData();
-				//$teacher -> editTeacher();
-				$this -> html = $teacher -> getHTML();
+				$teacher -> editTeacher();
+				$this -> html = $teacher -> html;
 			} else {
+				$teacher -> txtData = $txtData;
+				$teacher -> writeTeacherData();
 				$teacher -> addTeacher();
-				$this -> html = $teacher -> getHTML();
+				$this -> html = $teacher -> html;
 			}
-		} else if ($getID == "writeTeacherData") {
-			include_once $rootFile . '/lib/teacherInformation.php';
-			$teacher = new TeacherInformation($txtData);
-			$teacher -> writeTeacherData();
 		} else {
 			$this -> index();
 		}
