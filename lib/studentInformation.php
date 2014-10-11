@@ -56,7 +56,7 @@ class StudentInformation {
 		$this -> currentStudentInfomation[4] = $studentCode;
 		$myfile = fopen($studentFile, "w") or die("Unable to open file!");
 		fwrite($myfile, $studentCode);
-		fwrite($myStudents, "\r\n" . $studentFirstName . "_" . $studentLastName);
+		fwrite($myStudents, $studentFirstName . "_" . $studentLastName . "\r\n");
 		fclose($myfile);
 		$this -> currentStudentURL = $studentFile;
 
@@ -104,7 +104,7 @@ class StudentInformation {
 			$code = $this -> currentStudentInfomation[4];
 		}
 		$html = '';
-		if (file_exists("teacher/students.txt")) {
+		if (file_exists("teacher/teacher.txt")) {
 			$html .= '<h1>Student Information</h1>';
 			$html .= '<section>';
 			$html .= '<article>';

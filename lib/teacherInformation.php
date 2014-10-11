@@ -1,7 +1,15 @@
 <?php
 class TeacherInformation {
-	public $html = '';
-	public $txtData = '';
+	private $html = '';
+	private $txtData = '';
+
+	function __construct($txtData = '') {
+		$this -> txtData = $txtData;
+	}
+
+	public function getHTML() {
+		return $this -> html;
+	}
 
 	public function writeTeacherData() {
 		$teacherFirstName = "";
@@ -33,6 +41,8 @@ class TeacherInformation {
 			}
 		}
 		fclose($myfile);
+		
+		header('Location: index.php?id=teacherInformation');
 	}
 
 	public function addTeacher() {
@@ -42,7 +52,7 @@ class TeacherInformation {
 		$html .= '<section>';
 		$html .= '<article>';
 		$html .= '<p>';
-		$html .= '<form  name="student" action="index.php?id=editTeacher" method="POST">';
+		$html .= '<form  name="student" action="index.php?id=writeTeacherData" method="POST">';
 		$html .= 'First Name: <input type="text" name="fName" value=""><br>';
 		$html .= 'Last Name: <input type="text" name="lName" value=""><br>';
 		$html .= 'Classes: <input type="text" name="class" value=""><br>	';
@@ -96,7 +106,7 @@ class TeacherInformation {
 		$html .= '<section>';
 		$html .= '<article>';
 		$html .= '<p>';
-		$html .= '<form  name="student" action="index.php?id=addTeacher" method="POST">';
+		$html .= '<form  name="student" action="index.php?id=editTeacher" method="POST">';
 		$html .= 'First Name: <input type="text" name="fName" value="' . $fName . '"><br>';
 		$html .= 'Last Name: <input type="text" name="lName" value="' . $lName . '"><br>';
 		$html .= 'Classes: <input type="text" name="class" value="' . $class . '"><br>	';
