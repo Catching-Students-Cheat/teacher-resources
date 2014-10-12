@@ -1,9 +1,0 @@
-if (($renderer -> getPercentChange() > 60) && 
-					($studentNames[$j][2] = "false")) {
-						if ($currentNames[$i][2] == "false") {
-							$currentNames[$i][2] = "true";
-							$html .= $currentNames[$i][0] . " Current Percent copied: ".$renderer -> getPercentChange(). "<BR>";
-						}
-						$studentNames[$j][2] = "true";
-						$html .= $studentNames[$j][0] . " Student Percent copied: ".$renderer -> getPercentChange().  "<BR>";
-					}
