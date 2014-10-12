@@ -1,0 +1,6 @@
+fName=James
+lName=Henderson
+class=Computer Science
+classActive=1
+classActive=2
+classActive=3

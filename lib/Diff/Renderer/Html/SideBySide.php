@@ -114,6 +114,7 @@ class Diff_Renderer_Html_SideBySide extends Diff_Renderer_Html_Array {
 				else if ($change['tag'] == 'delete') {
 					foreach ($change['base']['lines'] as $no => $line) {
 						$countLine++;
+						$changeLine--;
 						$fromLine = $change['base']['offset'] + $no + 1;
 						$html .= '<tr>';
 						$html .= '<th>' . $fromLine . '</th>';
@@ -147,7 +148,6 @@ class Diff_Renderer_Html_SideBySide extends Diff_Renderer_Html_Array {
 					} else {
 						foreach ($change['changed']['lines'] as $no => $changedLine) {
 							$countLine++;
-							$changeLine++;
 							if (!isset($change['base']['lines'][$no])) {
 								$fromLine = '&nbsp;';
 								$line = '&nbsp;';

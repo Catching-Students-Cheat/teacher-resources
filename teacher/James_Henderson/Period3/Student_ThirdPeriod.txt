@@ -1,0 +1,7 @@
+$this->percentChange = round((($countLine-$changeLine)/$countLine)*100);
+$countLine++;
+							$changeLine++;
+							$fromLine = $change['base']['offset'] + $no + 1;
+							$html .= '<tr>';
+							$html .= '<th>' . $fromLine . '</th>';
+							$html .= '<td class="Left"><span>' . $line . '</span>&nbsp;</td>';

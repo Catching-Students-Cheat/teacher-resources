@@ -85,13 +85,14 @@ class StudentsCheat {
 					$renderer = new Diff_Renderer_Html_SideBySide;
 					$diff -> Render($renderer);
 
-					if ($renderer -> getPercentChange() > 60 || $renderer -> getPercentChange() == 0) {
+					if (($renderer -> getPercentChange() > 60) && 
+					($studentNames[$j][2] == "false")) {
 						if ($currentNames[$i][2] == "false") {
 							$currentNames[$i][2] = "true";
-							$html .= $currentNames[$i][0] . "<BR>";
+							$html .= $currentNames[$i][0] . " Percent copied: ".$renderer -> getPercentChange(). "<BR>";
 						}
 						$studentNames[$j][2] = "true";
-						$html .= $studentNames[$j][0] . "<BR>";
+						$html .= $studentNames[$j][0] . " Percent copied: ".$renderer -> getPercentChange().  "<BR>";
 					}
 				}
 			}

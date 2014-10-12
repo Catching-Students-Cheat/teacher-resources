@@ -48,6 +48,16 @@ class Diff_Renderer_Html_Array extends Diff_Renderer_Abstract {
 	 */
 	protected $defaultOptions = array('tabSize' => 4);
 
+	private $countLine = 0;
+	private $changeLine = 0;
+	public function getCountLine() {
+		return $this -> countLine;
+	}
+
+	public function getChangeLine() {
+		return $this -> changeLine;
+	}
+
 	/**
 	 * Render and return an array structure suitable for generating HTML
 	 * based differences. Generally called by subclasses that generate a
@@ -61,13 +71,15 @@ class Diff_Renderer_Html_Array extends Diff_Renderer_Abstract {
 		// we're not going to destroy the original data
 		$a = $this -> diff -> getA();
 		$b = $this -> diff -> getB();
-
+		$this -> countLine = 0;
+		$this -> changeLine = 0;
 		$changes = array();
 		$opCodes = $this -> diff -> getGroupedOpcodes();
 		foreach ($opCodes as $group) {
 			$blocks = array();
 			$lastTag = null;
 			$lastBlock = 0;
+
 			foreach ($group as $code) {
 				list($tag, $i1, $i2, $j1, $j2) = $code;
 
@@ -75,7 +87,6 @@ class Diff_Renderer_Html_Array extends Diff_Renderer_Abstract {
 					for ($i = 0; $i < ($i2 - $i1); ++$i) {
 						$fromLine = $a[$i1 + $i];
 						$toLine = $b[$j1 + $i];
-
 						list($start, $end) = $this -> getChangeExtent($fromLine, $toLine);
 						if ($start != 0 || $end != 0) {
 							$last = $end + strlen($fromLine);
@@ -98,12 +109,16 @@ class Diff_Renderer_Html_Array extends Diff_Renderer_Abstract {
 				$lastTag = $tag;
 
 				if ($tag == 'equal') {
+					$this -> countLine++;
+					$this -> changeLine++;
 					$lines = array_slice($a, $i1, ($i2 - $i1));
 					$blocks[$lastBlock]['base']['lines'] += $this -> formatLines($lines);
 					$lines = array_slice($b, $j1, ($j2 - $j1));
 					$blocks[$lastBlock]['changed']['lines'] += $this -> formatLines($lines);
 				} else {
 					if ($tag == 'replace' || $tag == 'delete') {
+						$this -> countLine++;
+						$this -> changeLine++;
 						$lines = array_slice($a, $i1, ($i2 - $i1));
 						$lines = $this -> formatLines($lines);
 						$lines = str_replace(array("\0", "\1"), array('<del>', '</del>'), $lines);
@@ -120,6 +135,7 @@ class Diff_Renderer_Html_Array extends Diff_Renderer_Abstract {
 			}
 			$changes[] = $blocks;
 		}
+
 		return $changes;
 	}
 
