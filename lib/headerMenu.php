@@ -14,7 +14,7 @@ class HeaderMenu {
 		$cheated="";
 		if($getID=="teacherInformation"){
 			$teacher="highlight";
-		}else if($getID=="studentInformation"){
+		}else if($getID=="studentInformation"||$getID=="viewStudent"){
 			$students="highlight";
 		}else if($getID=="addTeacher"){
 			$teacher="highlight";
